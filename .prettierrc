@@ -1,0 +1,19 @@
+{
+  "printWidth": 100,
+  "singleQuote": true,
+  "semi": false,
+  "trailingComma": "es5",
+  "tabWidth": 2,
+  "arrowParens": "avoid",
+  "endOfLine": "lf",
+  "importOrder": [
+    "^@?[a-z]+.+",
+    "^@/(?!.(?:.css|.less)$).$",
+    "^\\.\\.?/(?!.*.(css|less)$)",
+    "^.(?!(css|less)$)[^.]*$",
+    "(.css|.less)$"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": false,
+  "importOrderGroupNamespaceSpecifiers": false
+}
