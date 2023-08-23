@@ -1,5 +1,15 @@
 {
+  "plugins": [],
   "extends": [
-    "react-app"
-  ]
+    "react-app",
+    "react-app/jest",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "curly": "error",
+    "one-var": [
+      "error",
+      "never"
+    ]
+  }
 }
