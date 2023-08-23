@@ -8,8 +8,8 @@ end_of_line = lf
 insert_final_newline = true
 trim_trailing_whitespace = true
 
-[*.js]
-quote_type=single
-
 [*.md]
 trim_trailing_whitespace = false
+
+[*.{js,jsx,ts,tsx}]
+quote_type = single

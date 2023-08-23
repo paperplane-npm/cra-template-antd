@@ -7,11 +7,11 @@
   "arrowParens": "avoid",
   "endOfLine": "lf",
   "importOrder": [
-    "^@?[a-z]+.+",
-    "^@/(?!.(?:.css|.less)$).$",
-    "^\\.\\.?/(?!.*.(css|less)$)",
-    "^.(?!(css|less)$)[^.]*$",
-    "(.css|.less)$"
+    "^@?[a-zA-Z]+.+",
+    "^@/(?!.*\\.(css|scss|less)$)",
+    "^\\.\\.?/(?!.*.(css|scss|less)$)",
+    "^.(?!(css|scss|less)$)[^.]*$",
+    "(.css|.scss|.less)$"
   ],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": false,
