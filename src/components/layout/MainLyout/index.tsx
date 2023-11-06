@@ -9,7 +9,7 @@ export default function MainLayout(): RC {
 
   return (
     <div>
-      <p>我是页面 Layout，当前登录用户： {username}</p>
+      <p>我是页面 Layout，当前登录用户： {username || '(未登录)'}</p>
       <Outlet />
     </div>
   )

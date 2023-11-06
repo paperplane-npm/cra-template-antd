@@ -1,0 +1,9 @@
+# Set the default behavior for all files
+* text=auto eol=lf
+
+# Set specific behavior for files with certain extensions
+*.svg binary
+
+# Ignore files and directories
+logs/ export-ignore
+*.bak export-ignore

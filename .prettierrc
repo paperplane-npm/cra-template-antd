@@ -6,6 +6,7 @@
   "tabWidth": 2,
   "arrowParens": "avoid",
   "endOfLine": "lf",
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
   "importOrder": [
     "^@?[a-zA-Z]+.+",
     "^@/(?!.*\\.(css|scss|less)$)",

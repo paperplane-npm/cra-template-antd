@@ -1,0 +1,30 @@
+kind: pipeline
+name: default
+
+workspace:
+  path: /home/node/app
+
+steps:
+  - name: npm-auth
+    image: robertstettner/drone-npm-auth
+    settings:
+      token:
+        from_secret: NPM_TOKEN
+
+  - name: build-and-publish
+    image: node:16
+    volumes:
+      - name: npmcache
+        path: /usr/local/share/.cache/yarn
+    commands:
+      - yarn
+      - yarn release
+
+volumes:
+  - name: npmcache
+    host:
+      path: /home/ubuntu/npmcache
+
+trigger:
+  branch:
+    - master

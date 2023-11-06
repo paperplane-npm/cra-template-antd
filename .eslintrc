@@ -1,9 +1,10 @@
 {
-  "plugins": [],
   "extends": [
     "react-app",
     "react-app/jest",
     "plugin:prettier/recommended"
+  ],
+  "plugins": [
   ],
   "rules": {
     "curly": "error",
