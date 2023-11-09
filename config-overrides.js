@@ -1,4 +1,3 @@
-const { addBabelPreset } = require('customize-cra')
 const {
   override,
   overrideDevServer,
@@ -6,6 +5,7 @@ const {
   addLessLoader,
   addWebpackModuleRule,
   addBabelPlugin,
+  addBabelPreset,
 } = require('customize-cra')
 
 module.exports = {
