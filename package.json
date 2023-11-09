@@ -1,7 +1,7 @@
 {
   "name": "@paperplane/cra-template-antd",
-  "version": "1.0.0",
-  "description": "A great Create-React-App template for antd",
+  "version": "1.0.1",
+  "description": "A great Create-React-App template for antd.",
   "homepage": "",
   "author": "jia-niang <1@paperplane.cc>",
   "license": "MIT",
@@ -87,6 +87,7 @@
       "last 1 safari version"
     ]
   },
+  "eslintConfig": {},
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"

@@ -5,7 +5,16 @@ const packageJson = JSON.parse(String(fs.readFileSync('./package.json')))
 const newPackageJson = { private: true }
 
 for (const [key, value] of Object.entries(packageJson)) {
-  if (['homepage', 'scripts', 'dependencies', 'devDependencies', 'browserslist'].includes(key)) {
+  if (
+    [
+      'homepage',
+      'scripts',
+      'dependencies',
+      'devDependencies',
+      'browserslist',
+      'eslintConfig',
+    ].includes(key)
+  ) {
     newPackageJson[key] = value
   }
 }
