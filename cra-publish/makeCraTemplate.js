@@ -49,7 +49,10 @@ items.forEach(f => {
   }
 })
 
-fs.copySync(`./cra-publish/README.md`, `./template/README.md`)
+// 写入新的 README.md
+let readme = String(fs.readFileSync('./cra-publish/README.md'))
+readme = readme.replace(/%VERSION%/, packageJson.version)
+fs.writeFileSync('./template/README.md', readme)
 
 // 处理 .gitignore
 const gitignore = String(fs.readFileSync('./.gitignore'))

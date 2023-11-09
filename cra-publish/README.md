@@ -1,5 +1,7 @@
 # @paperplane/cra-template-antd
 
+由 [@paperplane/cra-template-antd](https://www.npmjs.com/package/@paperplane/cra-template-antd) 创建，版本 %VERSION%。
+
 # 指令
 
 ```bash
