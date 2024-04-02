@@ -14,16 +14,16 @@ steps:
   - name: build-and-publish
     image: node:16
     volumes:
-      - name: npmcache
+      - name: yarncache
         path: /usr/local/share/.cache/yarn
     commands:
       - yarn
       - yarn release
 
 volumes:
-  - name: npmcache
+  - name: yarncache
     host:
-      path: /home/ubuntu/npmcache
+      path: /root/.yarncache
 
 trigger:
   branch:
