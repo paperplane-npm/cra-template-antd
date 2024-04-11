@@ -2,7 +2,6 @@ const {
   override,
   overrideDevServer,
   addWebpackAlias,
-  addLessLoader,
   addWebpackModuleRule,
   addBabelPlugin,
   addBabelPreset,
@@ -12,19 +11,25 @@ module.exports = {
   webpack: override(
     addWebpackAlias({ '@': 'src/' }),
 
-    addLessLoader({
-      lessOptions: {
-        globalVars: {},
-        modifyVars: {},
-      },
-    }),
-
     addWebpackModuleRule({
-      test: /\.scss$/,
+      test: /\.less$/i,
       use: [
         'style-loader',
         'css-loader',
-        { loader: 'sass-loader', options: { additionalData: '@import "~@/styles/global.scss";' } },
+        { loader: 'less-loader', options: { additionalData: '@import "~@/styles/global.less";' } },
+      ],
+    }),
+
+    addWebpackModuleRule({
+      test: /\.scss$/i,
+      use: [
+        'style-loader',
+        'css-loader',
+        { loader: 'resolve-url-loader', options: {} }, // 解决 Sass 的 url() 相对路径问题
+        {
+          loader: 'sass-loader',
+          options: { sourceMap: true, additionalData: '@import "~@/styles/global.scss";' },
+        },
       ],
     }),
 

@@ -21,7 +21,7 @@ export default function CheckRequest(): RC {
 
   const responseError = () => {
     setResult('(无)')
-    client.get('/paperplane/xxx', { baseURL: '' }).catch(err => {
+    client.get('/paperplane/api/xxx', { baseURL: '' }).catch(err => {
       setResult('错误！！' + JSON.stringify(err))
     })
   }

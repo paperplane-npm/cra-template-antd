@@ -1,4 +1,4 @@
-import store from 'store'
+import store from 'store2'
 
 function uuid(len: number = 8): string {
   const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')

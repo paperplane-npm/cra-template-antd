@@ -37,6 +37,14 @@ export default function HomePage(): RC {
 
           <Button
             icon={<InfoCircleOutlined />}
+            onClick={() => void router.navigate('/check/check-less')}
+            type="primary"
+          >
+            点我去 less 测试页
+          </Button>
+
+          <Button
+            icon={<InfoCircleOutlined />}
             onClick={() => void router.navigate('/check/check-request')}
             type="primary"
           >
