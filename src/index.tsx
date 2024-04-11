@@ -8,6 +8,7 @@ import ReactDOM from 'react-dom/client'
 import RouterEntry from './router'
 
 import '@/styles/app.scss'
+import '@/styles/tailwind.css'
 
 dayjs.locale('zh-cn')
 
