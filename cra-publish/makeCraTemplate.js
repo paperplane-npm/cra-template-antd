@@ -40,7 +40,7 @@ items.forEach(f => {
       '.gitattributes',
       '.prettierrc',
       'config-overrides.js',
-      'LICENSE',
+      'tailwind.config.js',
       'tsconfig.json',
       'tsconfig.paths.json',
     ].includes(f)

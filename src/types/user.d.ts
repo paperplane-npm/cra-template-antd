@@ -1,5 +1,5 @@
 /** 用户的类型 */
 interface IUserInfo {
-  id: IDType
+  id: number
   name: string
 }

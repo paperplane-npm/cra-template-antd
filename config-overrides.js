@@ -1,3 +1,4 @@
+const path = require('path')
 const {
   override,
   overrideDevServer,
@@ -9,7 +10,7 @@ const {
 
 module.exports = {
   webpack: override(
-    addWebpackAlias({ '@': 'src/' }),
+    addWebpackAlias({ '@': path.resolve(__dirname, './src/') }),
 
     addWebpackModuleRule({
       test: /\.less$/i,
@@ -28,12 +29,17 @@ module.exports = {
         { loader: 'resolve-url-loader', options: {} }, // 解决 Sass 的 url() 相对路径问题
         {
           loader: 'sass-loader',
-          options: { sourceMap: true, additionalData: '@import "~@/styles/global.scss";' },
+          options: {
+            sourceMap: true, // 需要开启，配合 resolve-url-loader
+            additionalData: '@use "~@/styles/global.scss" as *;',
+            sassOptions: {
+              // 未使用 modern 模式，因此关闭警告；注意启动 modern 模式后需要处理 additionalData 的绝对路径
+              silenceDeprecations: ['legacy-js-api'],
+            },
+          },
         },
       ],
     }),
-
-    addBabelPlugin(['lodash']),
 
     addBabelPlugin(['@emotion']),
 
@@ -62,7 +68,7 @@ module.exports = {
 
       // 仅测试用。使用时请删去 ↓
       '/paperplane': {
-        target: 'https://app.paperplane.cc',
+        target: 'https://console.paperplane.cc/api',
         changeOrigin: true,
         pathRewrite: {
           '^/paperplane': '',

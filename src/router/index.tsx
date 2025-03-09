@@ -37,5 +37,16 @@ export const router = createBrowserRouter(routerConfig, { basename: process.env.
 
 export default function RouterEntry(): RC {
   // 注意此处的 fallbackElement 仅适用于 loader() 加载过程
-  return <RouterProvider router={router} fallbackElement={<FullpageLoading />} />
+  return (
+    <RouterProvider
+      // 去掉警告
+      future={{
+        v7_startTransition: false,
+        // @ts-expect-error
+        v7_relativeSplatPath: false,
+      }}
+      router={router}
+      fallbackElement={<FullpageLoading />}
+    />
+  )
 }

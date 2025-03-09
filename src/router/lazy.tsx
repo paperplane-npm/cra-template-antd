@@ -13,5 +13,6 @@ const lazyComponentDefaultOptions: ILazyOptions = {
 export default function lazy(loadFn: any, options?: ILazyOptions) {
   const LazyComponent = loadable(loadFn, { ...lazyComponentDefaultOptions, ...options })
 
+  // @ts-expect-error 缺少 refs，更新 react 版本可解决
   return <LazyComponent />
 }

@@ -5,14 +5,18 @@
 # 使用方式
 
 ```bash
-npx create-react-app <你的应用名> --template @paperplane/antd
+npx create-react-app <你的项目名> --template @paperplane/antd
 ```
+
+执行命令后，便会在当前目录创建一个项目文件夹，进入后即可开发。
+
+建议阅读生成的项目文件夹中的 `README.md`，了解这个模板的用法。
 
 # 介绍
 
-使用 Create-React-App 或组件库提供的 CLI 工具新建项目时，存在这些问题：
+曾经，使用 Create-React-App 或组件库提供的 CLI 工具新建项目时，存在这些问题：
 
-- 大部分常用的包（如 `lodash`）都需要再安装一遍；
+- 大部分常用的包（如 `lodash`）都需要单独安装；
 - 没有样板代码，例如路由配置、入口 Provider、全局 Layout 布局、请求拦截器等，这些都需要去复制一遍；
 - 默认的插件配置无法满足需求，必须再使用一些工具（如 `craco`）来定制 Webpack 插件。
 
@@ -31,18 +35,18 @@ npx create-react-app <你的应用名> --template @paperplane/antd
 依赖项：
 
 - 使用 `antd` 组件库，`@ant-design/icons` 图标库;
-- 因此使用 `emotion` 来提供 CSS-In-JS 支持；
+- 使用 `emotion` 来提供 CSS-In-JS 支持；
 - 使用了 `less` （版本号 `@^11.1.4`，因为后续版本需求 Node.js 18 以上）；
 - 使用了 `sass`，注意不是 `node-sass`，同时配合使用了 `resolve-url-loader` 来避免 `url()` 引用相对路径出错；
 - 使用了 `tailwindcss`，并配置了相关的 `prettier` 插件，注意默认关闭了 `tailwindcss` 的全局 CSS 重置；
-- 使用 `react-app-rewired`、`customize-cra` 来进行配置，考虑到它们很久没有更新了，你可以换用 `craco`；
+- 使用 `react-app-rewired`、`customize-cra` 来进行配置，考虑到它们很久没有更新了，你可以换用 `craco`，但后者也很久没更新了；
 - 路由管理使用 `react-router-dom` 的 v6 版本，它和以前的版本区别很大，API 完全不兼容；
-- 使用 `zustand` 来作状态管理，依赖中还包含了 `store2` 用来管理 localStorage；
+- 使用 `zustand` 来作为状态管理，依赖中还包含了 `localforage` 用来管理 localStorage 等本地存储；
 - 使用 `axios` 来作为请求库，依赖中还包含了 `swr` 用来实现 SWR 状态；
 - 使用 `dayjs` 作为时间日期库，它是 `antd` 推荐使用的库；
-- 此外，依赖中还有 `ahooks`、`lodash`、`clsx` 来作为工具函数。
+- 此外，依赖中还有 `ahooks`、`lodash-es`、`clsx` 来作为工具函数。
 
-# 开发指南
+# 二次开发指南
 
 Create-React-App 模板开发，可以参考 [官方文档](https://create-react-app.dev/docs/custom-templates)。
 

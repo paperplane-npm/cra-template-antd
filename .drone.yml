@@ -1,30 +1,56 @@
 kind: pipeline
-name: default
+name: check
+type: docker
 
-workspace:
-  path: /home/node/app
+trigger:
+  ref:
+    - refs/heads/**
 
 steps:
-  - name: npm-auth
+  - name: install
+    image: node:20.13.0
+    commands:
+      - yarn
+
+  - name: check
+    image: node:20.13.0
+    commands:
+      - yarn format
+      - yarn lint
+      - yarn check-types
+
+---
+kind: pipeline
+name: publish
+type: docker
+
+trigger:
+  ref:
+    - refs/heads/master
+    - refs/tags/*
+
+steps:
+  - name: install
+    image: node:20.13.0
+    commands:
+      - yarn
+    when:
+      event:
+        - tag
+
+  - name: auth
     image: robertstettner/drone-npm-auth
     settings:
       token:
         from_secret: NPM_TOKEN
+    when:
+      event:
+        - tag
 
-  - name: build-and-publish
-    image: node:16
-    volumes:
-      - name: yarncache
-        path: /usr/local/share/.cache/yarn
+  - name: publish
+    image: node:20.13.0
     commands:
-      - yarn
       - yarn release
-
-volumes:
-  - name: yarncache
-    host:
-      path: /root/.yarncache
-
-trigger:
-  branch:
-    - master
+    when:
+      event:
+        - tag

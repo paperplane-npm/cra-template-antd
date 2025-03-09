@@ -28,14 +28,14 @@ export default function CheckRequest(): RC {
 
   const bizError = () => {
     setResult('(无)')
-    client.get('/paperplane/api/git-helper/project/xxx', { baseURL: '' }).catch(err => {
+    client.get('/paperplane/captcha', { baseURL: '' }).catch(err => {
       setResult('错误！！' + JSON.stringify(err))
     })
   }
 
   const requestOK = () => {
     setResult('(无)')
-    client.get('/paperplane/api/git-helper/project', { baseURL: '' }).then(data => {
+    client.get('/paperplane/ai/list', { baseURL: '' }).then(data => {
       setResult(JSON.stringify(data))
     })
   }
@@ -58,7 +58,7 @@ export default function CheckRequest(): RC {
         </Button>
 
         <Button onClick={bizError} type="primary">
-          测试业务报错（success: false）
+          测试业务报错（success: false，提示 “请登录后继续”）
         </Button>
 
         <Button onClick={requestOK} type="primary">

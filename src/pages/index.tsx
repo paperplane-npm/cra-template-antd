@@ -1,10 +1,11 @@
 import { InfoCircleOutlined } from '@ant-design/icons'
 import { Button, Space } from 'antd'
-
-import { router } from '@/router'
+import { useNavigate } from 'react-router-dom'
 
 /** 首页 */
 export default function HomePage(): RC {
+  const navigate = useNavigate()
+
   return (
     <div>
       <p>我是首页</p>
@@ -13,7 +14,7 @@ export default function HomePage(): RC {
         <Space direction="vertical">
           <Button
             icon={<InfoCircleOutlined />}
-            onClick={() => void router.navigate('/check/check-zustand')}
+            onClick={() => void navigate('/check/check-zustand')}
             type="primary"
           >
             点我去 zustand 测试页
@@ -21,7 +22,7 @@ export default function HomePage(): RC {
 
           <Button
             icon={<InfoCircleOutlined />}
-            onClick={() => void router.navigate('/check/check-emotion')}
+            onClick={() => void navigate('/check/check-emotion')}
             type="primary"
           >
             点我去 emotion 测试页
@@ -29,7 +30,7 @@ export default function HomePage(): RC {
 
           <Button
             icon={<InfoCircleOutlined />}
-            onClick={() => void router.navigate('/check/check-sass')}
+            onClick={() => void navigate('/check/check-sass')}
             type="primary"
           >
             点我去 sass 测试页
@@ -37,7 +38,7 @@ export default function HomePage(): RC {
 
           <Button
             icon={<InfoCircleOutlined />}
-            onClick={() => void router.navigate('/check/check-less')}
+            onClick={() => void navigate('/check/check-less')}
             type="primary"
           >
             点我去 less 测试页
@@ -45,7 +46,7 @@ export default function HomePage(): RC {
 
           <Button
             icon={<InfoCircleOutlined />}
-            onClick={() => void router.navigate('/check/check-twcss')}
+            onClick={() => void navigate('/check/check-twcss')}
             type="primary"
           >
             点我去 tailwindcss 测试页
@@ -53,7 +54,7 @@ export default function HomePage(): RC {
 
           <Button
             icon={<InfoCircleOutlined />}
-            onClick={() => void router.navigate('/check/check-request')}
+            onClick={() => void navigate('/check/check-request')}
             type="primary"
           >
             点我去 request 测试页
