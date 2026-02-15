@@ -1,7 +1,6 @@
-import { createBrowserRouter, Navigate, RouteObject, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouteObject, RouterProvider } from 'react-router'
 
 import MainLayout from '@/components/layout/MainLyout'
-import FullpageLoading from '@/components/loading/FullpageLoading'
 import HomePage from '@/pages'
 import CheckPage from '@/pages/check'
 import Page404 from '@/pages/fallbacks/page-404'
@@ -19,6 +18,8 @@ export const routerConfig: RouteObject[] = [
         element: <CheckPage />,
         children: [
           { path: 'check-zustand', element: lazy(() => import('@/pages/check/check-zustand')) },
+          { path: 'check-icons', element: lazy(() => import('@/pages/check/check-icons')) },
+          { path: 'check-i18n', element: lazy(() => import('@/pages/check/check-i18n')) },
           { path: 'check-emotion', element: lazy(() => import('@/pages/check/check-emotion')) },
           { path: 'check-sass', element: lazy(() => import('@/pages/check/check-sass')) },
           { path: 'check-less', element: lazy(() => import('@/pages/check/check-less')) },
@@ -27,26 +28,14 @@ export const routerConfig: RouteObject[] = [
         ],
       },
 
-      { path: '404', element: <Page404 /> },
-      { path: '*', element: <Navigate to="/404" replace /> },
+      { path: '*', element: <Page404 /> },
     ],
   },
 ]
 
 export const router = createBrowserRouter(routerConfig, { basename: process.env.PUBLIC_URL })
 
-export default function RouterEntry(): RC {
+export default function RouterEntry() {
   // 注意此处的 fallbackElement 仅适用于 loader() 加载过程
-  return (
-    <RouterProvider
-      // 去掉警告
-      future={{
-        v7_startTransition: false,
-        // @ts-expect-error
-        v7_relativeSplatPath: false,
-      }}
-      router={router}
-      fallbackElement={<FullpageLoading />}
-    />
-  )
+  return <RouterProvider router={router} />
 }

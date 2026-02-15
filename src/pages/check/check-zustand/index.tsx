@@ -1,17 +1,17 @@
 import { Button, Space } from 'antd'
 
-import { useUserStore } from '@/services/user'
+import { useUserState } from '@/services/user'
 
 /** 用户页面 */
-export default function CheckZustand(): RC {
-  const userStore = useUserStore()
+export default function CheckZustand() {
+  const userStore = useUserState()
 
   const signInHandler = () => {
-    userStore.signIn({ id: 'user1', name: 'Test User' })
+    userStore.signIn({ id: 1, name: 'Test User' })
   }
 
   const signOutHandler = () => {
-    userStore.logout()
+    userStore.signOut()
   }
 
   return (

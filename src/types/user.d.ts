@@ -1,5 +1,5 @@
 /** 用户的类型 */
-interface IUserInfo {
-  id: string
+interface User {
+  id: number
   name: string
 }

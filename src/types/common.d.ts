@@ -1,25 +1,19 @@
 /** 响应体 */
-interface IResponseBody {
+interface ResponseBody {
   success: boolean
   message: string
   code: number
 }
 
 /** 成功的响应 */
-interface ISuccessBody<TData = any> extends IResponseBody {
+interface SuccessBody<Data = any> extends ResponseBody {
   success: true
-  data: TData
+  data: Data
+  code: 0
 }
 
-/** 出错的响应   */
-interface IErrorBody<TData = void> extends IResponseBody {
+/** 业务报错的响应   */
+interface ErrorBody<E = void> extends ResponseBody {
   success: false
-  data?: TData
-}
-
-/** 分页数据 */
-interface IPaginated<TData = any> {
-  total: number
-  current: number
-  list: TData[]
+  data?: E
 }

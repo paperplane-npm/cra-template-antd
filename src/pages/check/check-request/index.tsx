@@ -1,68 +1,47 @@
 import { Button, Space } from 'antd'
 import { useState } from 'react'
 
-import { rawClient, client } from '@/utils/client'
+import { client, pureClient } from '@/utils/client'
 
-export default function CheckRequest(): RC {
+export default function CheckRequest() {
   const [result, setResult] = useState('(无)')
-
-  const requestBaidu = () => {
-    rawClient.get('/test-devserver-baidu').then(res => {
-      setResult(res.data)
-    })
-  }
-
-  const nativeError = () => {
-    setResult('(无)')
-    client.get('https://www.baidu.com/').catch(err => {
-      setResult('错误！！ ' + JSON.stringify(err))
-    })
-  }
-
-  const responseError = () => {
-    setResult('(无)')
-    client.get('/paperplane/api/xxx', { baseURL: '' }).catch(err => {
-      setResult('错误！！' + JSON.stringify(err))
-    })
-  }
-
-  const bizError = () => {
-    setResult('(无)')
-    client.get('/paperplane/captcha', { baseURL: '' }).catch(err => {
-      setResult('错误！！' + JSON.stringify(err))
-    })
-  }
-
-  const requestOK = () => {
-    setResult('(无)')
-    client.get('/paperplane/ai/list', { baseURL: '' }).then(data => {
-      setResult(JSON.stringify(data))
-    })
-  }
 
   return (
     <div>
-      <p>request 测试页面（测试 devServer 配置是否生效，以及 changeOrigin、全局错误处理）</p>
+      <p>axios 客户端测试页面</p>
 
       <Space direction="vertical">
-        <Button onClick={requestBaidu} type="primary">
-          测试 devServer（请求百度）
+        <Button
+          type="primary"
+          onClick={() => client.get('/user').then(data => setResult(JSON.stringify(data)))}
+        >
+          成功请求
         </Button>
 
-        <Button onClick={nativeError} type="primary">
-          测试 request 原生报错
+        <Button
+          type="primary"
+          onClick={() =>
+            // pureClient 拿到的是原始响应
+            pureClient.get('/user').then(data => setResult(JSON.stringify(data.data.data)))
+          }
+        >
+          成功请求 (不自动拆包)
         </Button>
 
-        <Button onClick={responseError} type="primary">
-          测试请求报错（40x 或者 50x 错误码）
+        <Button
+          type="primary"
+          danger
+          onClick={() => client.get('/error').catch(err => setResult(err.message))}
+        >
+          业务报错 (有响应，但 success 为 false)
         </Button>
 
-        <Button onClick={bizError} type="primary">
-          测试业务报错（success: false，提示 “请登录后继续”）
-        </Button>
-
-        <Button onClick={requestOK} type="primary">
-          测试成功的请求
+        <Button
+          type="primary"
+          danger
+          onClick={() => client.get('/nothing').catch(err => setResult(err.message))}
+        >
+          原生报错 (请求直接错误，例如网络错误/跨域错误/非 2xx 状态码)
         </Button>
       </Space>
 

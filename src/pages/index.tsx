@@ -1,9 +1,9 @@
 import { InfoCircleOutlined } from '@ant-design/icons'
 import { Button, Space } from 'antd'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 
 /** 首页 */
-export default function HomePage(): RC {
+export default function HomePage() {
   const navigate = useNavigate()
 
   return (
@@ -18,6 +18,22 @@ export default function HomePage(): RC {
             type="primary"
           >
             点我去 zustand 测试页
+          </Button>
+
+          <Button
+            icon={<InfoCircleOutlined />}
+            onClick={() => void navigate('/check/check-icons')}
+            type="primary"
+          >
+            点我去 icons 测试页
+          </Button>
+
+          <Button
+            icon={<InfoCircleOutlined />}
+            onClick={() => void navigate('/check/check-i18n')}
+            type="primary"
+          >
+            点我去 i18n 测试页
           </Button>
 
           <Button

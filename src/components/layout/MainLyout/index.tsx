@@ -1,10 +1,10 @@
-import { Outlet } from 'react-router-dom'
+import { Outlet } from 'react-router'
 
-import { useUserStore } from '@/services/user'
+import { useUserState } from '@/services/user'
 
 /** 全站主 Layout */
-export default function MainLayout(): RC {
-  const currentUser = useUserStore(s => s.userInfo)
+export default function MainLayout() {
+  const currentUser = useUserState(s => s.user)
   const username = currentUser?.name
 
   return (

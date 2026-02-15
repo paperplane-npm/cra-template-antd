@@ -1,6 +1,7 @@
-$prefixCls: 'check-sass';
-
-.#{$prefixCls} {
-  background-color: #aaa;
+.sass-global {
   color: $primaryColor;
+}
+
+.sass-file {
+  color: darkgreen;
 }

@@ -1,6 +1,6 @@
 import { Button } from 'antd'
 
-export default function CheckTailwindcss(): RC {
+export default function CheckTailwindcss() {
   return (
     <div>
       <p>以下三个 div 宽度不同，则 tailwindcss 正常生效：</p>

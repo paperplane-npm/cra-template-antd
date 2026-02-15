@@ -1,15 +1,22 @@
-import { create } from 'zustand'
+import { create, ExtractState } from 'zustand'
+import { combine } from 'zustand/middleware'
 
-export interface IUserStore {
-  userInfo: IUserInfo | null
+// zustand 是 React 生态最好的状态管理工具之一
+// 文档： https://zustand.docs.pmnd.rs/
 
-  signIn(userInfo: IUserInfo): void
-  logout(): void
-}
+export const useUserState = create(
+  combine(
+    {
+      user: null as User | null,
+    },
 
-export const useUserStore = create<IUserStore>(set => ({
-  userInfo: null,
+    set => ({
+      signIn: (user: User) => void set({ user }),
+      signOut: () => void set({ user: null }),
+    })
+  )
+)
 
-  signIn: userInfo => void set({ userInfo }),
-  logout: () => void set({ userInfo: null }),
-}))
+// 将数据和方法分开定义，并通过 combine 组合，这样 zustand 创建的状态支持类型推断
+// 如果你需要把状态作为一个类型导出来，那么使用 ExtractState 即可
+export type UserInfoState = ExtractState<typeof useUserState>

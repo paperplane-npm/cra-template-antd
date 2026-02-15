@@ -1,6 +1,6 @@
-import { Outlet } from 'react-router-dom'
+import { Outlet } from 'react-router'
 
-export default function CheckPage(): RC {
+export default function CheckPage() {
   return (
     <div>
       <p>我是测试 Layout</p>

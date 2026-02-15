@@ -1,23 +1,40 @@
 const fs = require('fs-extra')
 
+const fieldsInPackageJson = [
+  'homepage',
+  'scripts',
+  'dependencies',
+  'devDependencies',
+  'resolutions',
+  'overrides',
+  'eslintConfig',
+  'browserslist',
+]
+
+const copyToTemplate = [
+  'public',
+  'src',
+  '.browserslistrc',
+  '.editorconfig',
+  '.env',
+  '.gitattributes',
+  '.prettierrc',
+  'craco.config.js',
+  'tailwind.config.js',
+  'tsconfig.json',
+  'tsconfig.paths.json',
+]
+
 // 基于 package.json 创建 template.json
 const packageJson = JSON.parse(String(fs.readFileSync('./package.json')))
 const newPackageJson = { private: true }
 
 for (const [key, value] of Object.entries(packageJson)) {
-  if (
-    [
-      'homepage',
-      'scripts',
-      'dependencies',
-      'devDependencies',
-      'browserslist',
-      'eslintConfig',
-    ].includes(key)
-  ) {
+  if (fieldsInPackageJson.includes(key)) {
     newPackageJson[key] = value
   }
 }
+
 delete newPackageJson.devDependencies['fs-extra']
 delete newPackageJson.scripts['prepublishOnly']
 delete newPackageJson.scripts['release']
@@ -30,21 +47,7 @@ fs.mkdirSync('./template', { recursive: true })
 
 const items = fs.readdirSync('./')
 items.forEach(f => {
-  if (
-    [
-      'public',
-      'src',
-      '.editorconfig',
-      '.env',
-      '.eslintrc',
-      '.gitattributes',
-      '.prettierrc',
-      'config-overrides.js',
-      'tailwind.config.js',
-      'tsconfig.json',
-      'tsconfig.paths.json',
-    ].includes(f)
-  ) {
+  if (copyToTemplate.includes(f)) {
     fs.copySync(`./${f}`, `./template/${f}`, { overwrite: true, preserveTimestamps: true })
   }
 })
