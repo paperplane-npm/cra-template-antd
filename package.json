@@ -33,8 +33,7 @@
     "format": "prettier --list-different \"src/**/*.{ts,tsx,css,scss,less}\" \"*.js\"",
     "lint": "eslint \"src/**/*.{ts,tsx}\" \"*.{js,mjs}\"",
     "check-types": "tsc --noEmit",
-    "prepublishOnly": "node ./cra-publish/makeCraTemplate.js",
-    "release": "node ./cra-publish/publish.js"
+    "prepublishOnly": "node ./cra-publish/makeCraTemplate.js"
   },
   "dependencies": {
     "@ant-design/icons": "^6.1.0",
